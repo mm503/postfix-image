@@ -8,6 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
   --no-install-recommends --no-install-suggests \
   ca-certificates \
   postfix \
+  libsasl2-modules \
   && apt-get --quiet --quiet clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -17,9 +18,9 @@ WORKDIR /root
 # Remove default configs
 RUN rm -f /etc/postfix/master.cf /etc/postfix/main.cf
 
-COPY docker-entrypoint.sh ./
+COPY entrypoint.sh ./
 
 VOLUME ["/var/log", "/var/spool/postfix"]
 EXPOSE 25/TCP
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["postfix", "-v", "start-fg"]
