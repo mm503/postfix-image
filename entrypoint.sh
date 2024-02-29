@@ -9,9 +9,9 @@ if [ "$1" = 'postfix' ]; then
   mkdir -p /var/spool/postfix/etc
   cp /etc/{hosts,localtime,nsswitch.conf,resolv.conf,services} /var/spool/postfix/etc/
 
-  postalias /etc/aliases
-  postmap /etc/postfix/generic
-  postmap /etc/postfix/virtual
+  test -f /etc/aliases && postalias /etc/aliases || true
+  test -f /etc/postfix/generic && postmap /etc/postfix/generic || true
+  test -f /etc/postfix/virtual && postmap /etc/postfix/virtual || true
 
   exec "$@"
 fi
