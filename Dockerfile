@@ -1,4 +1,4 @@
-FROM debian:12.5-slim
+FROM debian:12.6-slim
 
 RUN apt-get update --quiet --quiet \
   && apt-get upgrade --quiet --quiet
