@@ -1,4 +1,4 @@
-FROM debian:13.1-slim
+FROM debian:13.2-slim
 
 RUN apt-get update --quiet --quiet \
   && apt-get upgrade --quiet --quiet
